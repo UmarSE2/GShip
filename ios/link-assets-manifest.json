@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Sansation_Bold.ttf",
+      "sha1": "cb34aa6e1b227aea85452ec2170723d702529d45"
+    },
+    {
+      "path": "assets/fonts/Sansation_Regular.ttf",
+      "sha1": "cce586ccae3991a117fb36f80e4f71cc321fd670"
+    }
+  ]
+}

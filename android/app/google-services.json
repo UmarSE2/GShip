@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "76095263989",
+    "project_id": "gshipapp",
+    "storage_bucket": "gshipapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76095263989:android:1fdd406bb38075d365e1bc",
+        "android_client_info": {
+          "package_name": "com.gship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76095263989-ga77kp015e3kfdopqtld1u4b0t20f70s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gship",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "76095263989-5qrkdqkhc7abbrtek3p3jdl5a2ke5l0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh8OgESoROHV56EHLpf-FQxhvJRm0N8ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76095263989-5qrkdqkhc7abbrtek3p3jdl5a2ke5l0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
