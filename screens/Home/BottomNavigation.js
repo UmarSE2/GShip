@@ -37,7 +37,7 @@ const Menu = () => {
                 }}
             />
             <Tab.Screen
-                name="Filter"
+                name="Search"
                 component={Search}
                 options={{
                     headerTitle: props => <HeaderLogo {...props} />,
@@ -47,10 +47,11 @@ const Menu = () => {
                 }}
             />
             <Tab.Screen
-                name="Account"
+                name="Cart"
                 component={Cart}
                 options={{
                     headerTitle: props => <HeaderLogo {...props} />,
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ focused }) => (
                         <SimpleLineIcons name="handbag" size={27} color={focused ? "black" : "#b3b3b3"} />
                     ),
