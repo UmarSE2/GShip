@@ -41,6 +41,7 @@ const Menu = () => {
                 component={Search}
                 options={{
                     headerTitle: props => <HeaderLogo {...props} />,
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ focused }) => (
                         <AntDesign name="search1" size={27} color={focused ? "black" : "#b3b3b3"} />
                     ),
