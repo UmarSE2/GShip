@@ -1,36 +1,45 @@
-import React, { useEffect } from 'react'
-import { Image, StyleSheet, View, Dimensions } from 'react-native'
+import React, {useState, useRef,useEffect} from 'react';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import Video from 'react-native-video';
 import { useNavigation } from '@react-navigation/native'
-const { width, height } = Dimensions.get('window');
-
 const SplashScreen = () => {
     const navigation = useNavigation();
-
-    useEffect(() => {
+        useEffect(() => {
         setTimeout(() => {
             navigation.navigate("Intro Screen")
-        }, 2000)
+        }, 3000)
     }, [])
-
-    return (
-        <View style={styles.container}>
-            <Image source={require("../../Images/gshiplogo.png")} style={styles.image} />
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: 'center'
-    },
-    image: {
-        width: width * 0.6,
-        height: height * 0.1,
-        resizeMode: 'contain'
-    }
-})
+  return (
+    <View style={{flex: 1}}>
+      <Video
+        resizeMode="contain"
+        source={require('../../Images/Umeedesahar.mp4')}
+        style={styles.mediaPlayer}
+        volume={10}
+      />
+    </View>
+  );
+};
 
 export default SplashScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  toolbar: {
+    marginTop: 30,
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+  },
+  mediaPlayer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+  },
+});

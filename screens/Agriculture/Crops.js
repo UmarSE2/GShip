@@ -7,10 +7,11 @@ import Feather from "react-native-vector-icons/Feather"
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 
 import Font from '../../components/Helper/Font'
-
+import Header from '../../components/HomeHeader'
 import CropsCard, { CropsData } from './CropsCard'
 
 function card(val, index) {
+    
     return (
         <CropsCard
             key={index}
@@ -24,6 +25,7 @@ function card(val, index) {
 const Crops = () => {
     return (
         <View style={{ flex: 1 }}>
+            <Header/>
             <ScrollView style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 20 }}>
                 <View style={[styles.container, { justifyContent: "space-between" }]}>
                     <Text style={styles.cropsHeader}>Crops registered in California</Text>

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, KeyboardAvoidingView, Platform, Dimensions, ScrollView } from 'react-native';
+import { View, TextInput, StyleSheet, KeyboardAvoidingView, Platform, Dimensions, ScrollView ,} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 const { width } = Dimensions.get('window')
 
 import DataCard from '../../components/Home/DataCard';
 import Data from '../../components/Home/Data';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function ncard(val, index) {
     return (
@@ -27,7 +28,8 @@ const Home = () => {
     const [occupation, setOccupation] = useState("Occupation")
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+        <SafeAreaView>
+        {/*  <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}> */}
             <View style={styles.inputContainer}>
                 <TextInput
                     value={search}
@@ -57,7 +59,8 @@ const Home = () => {
             <ScrollView>
                 {Data.map(ncard)}
             </ScrollView>
-        </KeyboardAvoidingView>
+        {/* </KeyboardAvoidingView> */}
+         </SafeAreaView>
     );
 };
 

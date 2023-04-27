@@ -4,6 +4,7 @@ const { width, height } = Dimensions.get("window")
 
 import Font from '../../components/Helper/Font';
 
+import { useNavigation } from '@react-navigation/native'
 export const CropsData = [
     {
         id: 1,
@@ -57,9 +58,10 @@ export const CropsData = [
 
 const CropsCard = (prop) => {
     const [isSelected, setIsSelected] = useState(false);
-
+        const navigation = useNavigation();
     const handlePress = () => {
-        setIsSelected(!isSelected);
+        // setIsSelected(!isSelected);
+        navigation.navigate("Weather")
     }
 
     return (

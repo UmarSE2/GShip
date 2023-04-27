@@ -1,13 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Alert } from 'react-native'
 const { width, height } = Dimensions.get("window")
 
 import Feather from "react-native-vector-icons/Feather"
-
+import Ionicons from "react-native-vector-icons/Ionicons"
 import WeatherValues from './WeatherValues'
 import Font from '../../components/Helper/Font'
-
+import { useNavigation } from '@react-navigation/native';
 const Weather = () => {
+    const navigation = useNavigation();
     const currentDate = new Date();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const dayName = days[currentDate.getDay()];
@@ -15,13 +16,21 @@ const Weather = () => {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const monthName = monthNames[currentDate.getMonth()];
     const year = currentDate.getFullYear();
-
+const NavigateFun =()=>{
+    navigation.navigate("Crops")
+}
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.header}>
+                <View style={{flexDirection:'row',marginTop:20}}>
+                    <TouchableOpacity onPress={NavigateFun}>
+                <Ionicons name="chevron-back" size={25} color="white" style={{marginTop:20,marginRight:20}}  />
+                </TouchableOpacity>
                 <Text style={styles.weather}>Weather Condition</Text>
-                <Text style={{ color: "lightgrey", marginTop: "2%" }}>{dayName}, {monthName},{day}, {year}</Text>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "18%" }}>
+                </View>
+               
+                <Text style={{ color: "lightgrey", marginTop: "4%" }}>{dayName}, {monthName},{day}, {year}</Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "15%" }}>
                     <Text style={{ color: "white", fontFamily: Font.bold }}>Today</Text>
                     <Text style={{ color: "white", fontFamily: Font.bold }}>Tomorrow</Text>
                     <Text style={{ color: "white", fontFamily: Font.bold }}>Next Week</Text>
@@ -50,18 +59,19 @@ const styles = StyleSheet.create({
         backgroundColor: "#4cb078",
         width: width,
         height: height * 0.25,
-        position: "absolute",
+        // position: "absolute",
         paddingHorizontal: "10%",
     },
     weather: {
         fontFamily: Font.bold,
         fontSize: 24,
         marginTop: "5%",
-        color: "white"
+        color: "white",
+        marginTop:20
     },
     container: {
         backgroundColor: "white",
-        marginTop: height * 0.21,
+        marginTop: -height * 0.02,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         flex: 1,

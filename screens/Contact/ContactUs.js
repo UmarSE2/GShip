@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window');
 
 import Font from '../../components/Helper/Font';
 import Color from '../../components/Helper/Color';
-import Header from '../../components/Header'
+import Header from '../../components/HomeHeader'
 
 const Contact = () => {
     const [name, setName] = useState('')
@@ -14,7 +14,7 @@ const Contact = () => {
     const [message, setMessage] = useState('')
 
     return (
-        <View style={{ flex: 1, backgroundColor: "white" }}>
+        <View style={{  backgroundColor: "white" }}>
             <Header />
             <View style={styles.container}>
                 <Text style={styles.heading}>Contact Us</Text>
@@ -59,6 +59,7 @@ const Contact = () => {
                 <TouchableOpacity style={styles.btnReg}>
                     <Text style={styles.btntxtReg}>Send Message</Text>
                 </TouchableOpacity>
+                <View style={{marginTop:'100%'}}/>
             </View>
         </View>
     )
@@ -66,22 +67,23 @@ const Contact = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: "-68%",
-        flex: 1,
         backgroundColor: "white",
         paddingHorizontal: width * 0.05,
+        marginTop:'15%',
     },
     heading: {
         fontFamily: Font.bold,
         fontSize: 28,
         textAlign: "center",
+        
     },
     line: {
         borderBottomColor: "#cccccc",
         borderBottomWidth: 1,
-        width: "57%",
+        width: "42%",
         marginTop: "1%",
-        alignSelf: "center"
+        alignSelf: "center",
+        marginBottom:'10%'
     },
     input: {
         width: width * 0.9,
