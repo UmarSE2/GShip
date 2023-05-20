@@ -1,14 +1,8 @@
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 import Font from '../../components/Helper/Font';
 import Color from '../../components/Helper/Color';
 import Slides from './Slides';
@@ -47,7 +41,7 @@ const IntroScreen = () => {
       {showRealApp ? (
         ''
       ) : (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Slides slides={slides} />
           <TouchableOpacity style={styles.btn} onPress={onDone}>
             <Text style={styles.btntxt}>Next</Text>

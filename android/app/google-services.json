@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "76095263989",
-    "project_id": "gshipapp",
-    "storage_bucket": "gshipapp.appspot.com"
+    "project_number": "1082234765305",
+    "project_id": "mytown-c9431",
+    "storage_bucket": "mytown-c9431.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:76095263989:android:1fdd406bb38075d365e1bc",
+        "mobilesdk_app_id": "1:1082234765305:android:308ef070e60b00ca02c728",
         "android_client_info": {
           "package_name": "com.gship"
         }
       },
       "oauth_client": [
         {
-          "client_id": "76095263989-ga77kp015e3kfdopqtld1u4b0t20f70s.apps.googleusercontent.com",
+          "client_id": "1082234765305-cqs154b03qsdc72ggi3q4aq5t6aukgtg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.gship",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "76095263989-5qrkdqkhc7abbrtek3p3jdl5a2ke5l0m.apps.googleusercontent.com",
+          "client_id": "1082234765305-i2ol2dm9o9qohmu9qinj26sqn6138b4m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCh8OgESoROHV56EHLpf-FQxhvJRm0N8ew"
+          "current_key": "AIzaSyB6OBmxY4uctoti1yzQRA71Wqg6WK5QyIE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "76095263989-5qrkdqkhc7abbrtek3p3jdl5a2ke5l0m.apps.googleusercontent.com",
+              "client_id": "1082234765305-i2ol2dm9o9qohmu9qinj26sqn6138b4m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

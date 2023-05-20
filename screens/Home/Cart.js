@@ -9,7 +9,8 @@ import Entypo from 'react-native-vector-icons/Entypo'
 
 import styles from './CartStyles'
 
-const Cart = () => {
+const Cart = ({ route }) => {
+    const { profile } = route.params;
     const [driverSwitch, setDriverSwitch] = useState(true);
     const [cashSwitch, setCashSwitch] = useState(false);
     const [message, setMessage] = useState("")
@@ -32,7 +33,7 @@ const Cart = () => {
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         <Image source={require("../../Images/dp.png")} style={styles.image} />
                         <View style={{ marginLeft: "10%" }}>
-                            <Text style={styles.name}>Umar</Text>
+                            <Text style={styles.name}>{profile.Peoplename}</Text>
                             <Text style={styles.courier}>Your Courier</Text>
                             <Text style={styles.courier}>$ 000 000</Text>
                         </View>
@@ -48,7 +49,7 @@ const Cart = () => {
                 <View style={styles.subContainer}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         <View style={styles.iconContainer}>
-                            <Entypo name="text-document" size={22} color="white" style={{ marginVertical: "20%" }} />
+                            <Entypo name="text-document" size={22} color="white" />
                         </View>
                         <Text style={styles.headtxt}>Add note for courier</Text>
                     </View>

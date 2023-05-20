@@ -6,7 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Font from '../../components/Helper/Font'
 import ContentList from '../../components/Profile/ContentList'
 
-const Profile = () => {
+const Profile = ({ route }) => {
+    // const { profile } = route.params;
     const navigation = useNavigation();
 
     return (
@@ -20,8 +21,10 @@ const Profile = () => {
             <View style={{ flexDirection: "row", alignItems: "center", marginTop: "8%", marginBottom: "5%" }}>
                 <Image source={require("../../Images/dp.png")} style={styles.image} />
                 <View style={{ marginLeft: "10%", }}>
-                    <Text style={styles.name}>Muhammad Umar</Text>
-                    <Text style={styles.email}>umar1234@gmail.com</Text>
+                    {/* <Text style={styles.name}>{profile.Peoplename}</Text>
+                    <Text style={styles.email}>{profile.Phonenumber}</Text> */}
+                    <Text style={styles.name}>Umar</Text>
+                    <Text style={styles.email}>umer@gmail.com</Text>
                     <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Edit Profile")}>
                         <Text style={styles.btntxt}>Edit Profile</Text>
                     </TouchableOpacity>

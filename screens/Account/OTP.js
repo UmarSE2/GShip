@@ -41,7 +41,7 @@ const OTP = () => {
                 otp.join('')
             );
             const userCredential = await firebase.auth().signInWithCredential(authCredential);
-            navigation.navigate('BottomNavigation', { user: userCredential.user });
+            navigation.navigate('Home', { user: userCredential.user });
         } catch (err) {
             console.log(err);
             Alert.alert("Wrong Code")

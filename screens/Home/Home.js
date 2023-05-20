@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, KeyboardAvoidingView, Platform, Dimensions, ScrollView ,} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, StyleSheet, Dimensions, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/AntDesign';
+import firestore from "@react-native-firebase/firestore"
+import DataList from '../../components/Home/DataCard';
+import { useTranslation } from 'react-i18next';
+
 const { width } = Dimensions.get('window')
-
-import DataCard from '../../components/Home/DataCard';
-import Data from '../../components/Home/Data';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-function ncard(val, index) {
-    return (
-        <DataCard
-            key={index}
-            image={val.image}
-            name={val.name}
-            job={val.job}
-            phone={val.phone}
-            icon={val.icon}
-            data={val.data}
-        />
-    );
-}
 
 const Home = () => {
     const [search, setSearch] = useState('');
     const [num, setNum] = useState('Chak Num');
     const [occupation, setOccupation] = useState("Occupation")
+    const [data, setData] = useState([]);
+
+    const { t } = useTranslation()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const querySnapshot = await firestore().collection('All Peoples').get();
+                const data = querySnapshot.docs.map(doc => ({ ...doc.data(), key: doc.id }));
+                setData(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
-        <SafeAreaView>
-        {/*  <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}> */}
+        <View>
             <View style={styles.inputContainer}>
                 <TextInput
                     value={search}
                     onChangeText={setSearch}
                     style={styles.input}
-                    placeholder='Search by Name'
+                    placeholder={t("Search by name")}
                     placeholderTextColor="black"
                 />
                 <Icon name="search1" size={23} color="#b3b3b3" />
@@ -43,24 +44,24 @@ const Home = () => {
             <View style={styles.pickerContainer}>
                 <View style={styles.pickerWrapper}>
                     <Picker style={styles.picker} selectedValue={num} onValueChange={(value) => setNum(value)} mode="dropdown">
-                        <Picker.Item label="Chak Num" value="option1" />
+                        <Picker.Item label={t("Chak Num")} value="option1" />
                         <Picker.Item label="Option 2" value="option2" />
                         <Picker.Item label="Option 3" value="option3" />
                     </Picker>
                 </View>
                 <View style={styles.pickerWrapper}>
                     <Picker style={styles.picker} selectedValue={occupation} onValueChange={(value) => setOccupation(value)} mode="dropdown">
-                        <Picker.Item label="Occupation" value="option1" />
+                        <Picker.Item label={t("Occupation")} value="option1" />
                         <Picker.Item label="Option 2" value="option2" />
                         <Picker.Item label="Option 3" value="option3" />
                     </Picker>
                 </View>
             </View>
-            <ScrollView>
-                {Data.map(ncard)}
-            </ScrollView>
-        {/* </KeyboardAvoidingView> */}
-         </SafeAreaView>
+            {data
+                ? <DataList />
+                : <Text>{t("No any data")}</Text>
+            }
+        </View >
     );
 };
 
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     pickerContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // alignItems: 'center',
+        alignItems: 'center',
         marginTop: '3%',
         width: width * 0.94,
         alignSelf: 'center'
@@ -97,6 +98,19 @@ const styles = StyleSheet.create({
         borderColor: '#b3b3b3',
         backgroundColor: "white",
         justifyContent: "center"
+    },
+    item: {
+        backgroundColor: "white",
+        width: "100%",
+        height: 150,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        marginBottom: 10,
+    },
+    itemText: {
+        fontSize: 35,
+        textAlign: "center",
+        color: "red",
     },
 });
 

@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 import Font from '../../components/Helper/Font';
 import Color from '../../components/Helper/Color';
 import Slides from './Slides';
@@ -36,6 +31,7 @@ const slides = [
 
 const AboutUs = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const [showRealApp, setShowRealApp] = useState(false);
 
   const onClose = () => {
@@ -44,12 +40,12 @@ const AboutUs = () => {
 
   return (
     <>
-        <View style={{flex: 1,backgroundColor:'#fff'}}>
-          <Slides slides={slides} />
-          <TouchableOpacity style={styles.btn} onPress={onClose}>
-            <Text style={styles.btntxt}>Close</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <Slides slides={slides} />
+        <TouchableOpacity style={styles.btn} onPress={onClose}>
+          <Text style={styles.btntxt}>{t("Close")}</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };

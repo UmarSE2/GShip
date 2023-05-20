@@ -1,27 +1,57 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, FlatList, Dimensions, Text, TouchableOpacity } from 'react-native';
+import firestore from "@react-native-firebase/firestore"
+import { useNavigation } from '@react-navigation/native'
+
 const { width } = Dimensions.get('window')
 
-import Font from '../Helper/Font'
+const DataList = () => {
+    const [data, setData] = useState([]);
+    const navigation = useNavigation();
 
-const DataCard = (props) => {
-    return (
-        <TouchableOpacity style={styles.container}>
-            <Image source={props.image} style={styles.image} />
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const querySnapshot = await firestore().collection('All Peoples').get();
+                const data = querySnapshot.docs.map(doc => ({ ...doc.data(), key: doc.id }));
+                setData(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const renderItem = ({ item }) => (
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Cart', { profile: item })}>
+            {/* <Image source={props.image} style={styles.image} /> */}
             <View style={styles.subContainer}>
                 <View>
-                    <Text style={styles.name}>{props.name}</Text>
-                    <Text style={styles.job}>{props.job}</Text>
-                    <Text style={styles.phone}>{props.phone}</Text>
+                    <Text style={styles.name}>{item.Peoplename}</Text>
+                    <Text style={styles.job}>{item.Phonenumber}</Text>
+                    <Text style={styles.phone}>{item.Checkno}</Text>
                 </View>
                 <View>
-                    <Image source={props.icon} style={styles.icon} />
-                    <Text style={styles.data}>{props.data}</Text>
+                    {/* <Image source={props.icon} style={styles.icon} /> */}
+                    <Text style={styles.data}>{item.Occuption}</Text>
                 </View>
             </View>
         </TouchableOpacity>
-    )
-}
+    );
+
+    return (
+        <View>
+            {data
+                ? <FlatList
+                    data={data}
+                    keyExtractor={item => item.key.toString()}
+                    renderItem={renderItem}
+                />
+                : "no data"
+            }
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -34,14 +64,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
     },
-    image: {
-        width: 65,
-        height: 63,
-        borderRadius: 30,
-        marginLeft: "3%"
-    },
+    // image: {
+    //     width: 65,
+    //     height: 63,
+    //     borderRadius: 30,
+    //     marginLeft: "3%"
+    // },
     name: {
-        fontFamily: Font.bold,
+        // fontFamily: Font.bold,
         fontSize: 20,
         color: "#274F66"
     },
@@ -61,17 +91,17 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flex: 1,
     },
-    icon: {
-        width: 30,
-        height: 30,
-        marginLeft: "3%"
-    },
+    // icon: {
+    //     width: 30,
+    //     height: 30,
+    //     marginLeft: "3%"
+    // },
     data: {
         marginTop: "4%",
         color: "#274F66",
         marginTop: "15%",
         marginRight: "7%"
     }
-})
+});
 
-export default DataCard;
+export default DataList;

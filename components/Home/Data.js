@@ -1,5 +1,3 @@
-import Icon from 'react-native-vector-icons/Ionicons';
-
 const Data = [
     {
         image: require("../../Images/dp.png"),

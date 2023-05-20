@@ -1,16 +1,19 @@
-import React, {useState, useRef,useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Video from 'react-native-video';
 import { useNavigation } from '@react-navigation/native'
+
 const SplashScreen = () => {
-    const navigation = useNavigation();
-        useEffect(() => {
-        setTimeout(() => {
-            navigation.navigate("Intro Screen")
-        }, 3000)
-    }, [])
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("Intro Screen")
+    }, 3000)
+  }, [])
+
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <Video
         resizeMode="contain"
         source={require('../../Images/Umeedesahar.mp4')}
@@ -20,8 +23,6 @@ const SplashScreen = () => {
     </View>
   );
 };
-
-export default SplashScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -43,3 +44,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default SplashScreen;

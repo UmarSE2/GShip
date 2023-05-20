@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     subContainer: {
         width: width * 0.9,
-        height: height * 0.3,
+        height: height * 0.32,
         alignSelf: "center",
         paddingHorizontal: 30,
         backgroundColor: 'white',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#00cc44",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "3%",
+        marginTop: "3.7%",
         marginRight: "5%"
     },
     input: {
