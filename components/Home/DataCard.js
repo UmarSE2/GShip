@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, FlatList, Dimensions, Text, TouchableOpacity } from 'react-native';
 import firestore from "@react-native-firebase/firestore"
 import { useNavigation } from '@react-navigation/native'
+import Font from '../Helper/Font';
 
 const { width } = Dimensions.get('window')
 
+const icon = require("../../Images/heartlogo.png")
+
 const DataList = () => {
-    const [data, setData] = useState([]);
     const navigation = useNavigation();
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,16 +27,16 @@ const DataList = () => {
 
     const renderItem = ({ item }) => (
         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Cart', { profile: item })}>
-            {/* <Image source={props.image} style={styles.image} /> */}
+            <Image source={item.Profile} style={styles.image} />
             <View style={styles.subContainer}>
                 <View>
                     <Text style={styles.name}>{item.Peoplename}</Text>
-                    <Text style={styles.job}>{item.Phonenumber}</Text>
-                    <Text style={styles.phone}>{item.Checkno}</Text>
+                    <Text style={styles.job}>{item.Occuption}</Text>
+                    <Text style={styles.phone}>{item.Phonenumber}</Text>
                 </View>
-                <View>
-                    {/* <Image source={props.icon} style={styles.icon} /> */}
-                    <Text style={styles.data}>{item.Occuption}</Text>
+                <View style={{ marginRight: "7%" }}>
+                    <Image source={icon} style={styles.icon} />
+                    <Text style={styles.data}>{item.Checkno}</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -46,8 +49,9 @@ const DataList = () => {
                     data={data}
                     keyExtractor={item => item.key.toString()}
                     renderItem={renderItem}
+                    contentContainerStyle={{ paddingBottom: "47%" }}
                 />
-                : "no data"
+                : <Text style={styles.noDataText}>No data</Text>
             }
         </View>
     );
@@ -64,14 +68,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
     },
-    // image: {
-    //     width: 65,
-    //     height: 63,
-    //     borderRadius: 30,
-    //     marginLeft: "3%"
-    // },
+    image: {
+        width: 65,
+        height: 63,
+        borderRadius: 30,
+        marginLeft: "3%"
+    },
     name: {
-        // fontFamily: Font.bold,
+        fontFamily: Font.bold,
         fontSize: 20,
         color: "#274F66"
     },
@@ -81,9 +85,10 @@ const styles = StyleSheet.create({
         marginBottom: "2%"
     },
     phone: {
-        marginTop: "5%",
+        marginTop: "10%",
         color: "#274F66",
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: Font.regular,
     },
     subContainer: {
         flexDirection: "row",
@@ -91,17 +96,20 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flex: 1,
     },
-    // icon: {
-    //     width: 30,
-    //     height: 30,
-    //     marginLeft: "3%"
-    // },
+    icon: {
+        width: 30,
+        height: 30,
+    },
     data: {
-        marginTop: "4%",
         color: "#274F66",
-        marginTop: "15%",
-        marginRight: "7%"
-    }
+        marginTop: "30%",
+    },
+    noDataText: {
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: 'gray',
+    },
 });
 
 export default DataList;

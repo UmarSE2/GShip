@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Linking, Modal } from 'react-native';
-import React, { useState } from 'react';
 const { height, width } = Dimensions.get('window');
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,9 +8,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import SwitchSelector from 'react-native-switch-selector';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Font from '../../components/Helper/Font';
 
@@ -18,7 +18,10 @@ const ContentList = () => {
   const [showModal, setShowModal] = useState(false);
   const [mobileNumber, setMobileNumber] = useState('');
   const [whatsAppMsg, setWhatsAppMsg] = useState('https://www.developerumarhayat.com/');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
 
   const LogoutFun = () => {
     navigation.navigate('Signin');
@@ -38,20 +41,26 @@ const ContentList = () => {
       .catch(() => { alert('Make sure Whatsapp installed on your device'); });
   }
 
-  const { t, i18n } = useTranslation();
-
   const options = [
     { label: 'English', value: 'en' },
-    { label: 'Urdu', value: 'ur' },
+    { label: 'اردو', value: 'ur' },
   ];
+
+  useEffect(() => {
+    const fetchLanguage = async () => {
+      const language = await AsyncStorage.getItem('lan');
+      setSelectedLanguage(language || 'en');
+    };
+    fetchLanguage();
+  }, []);
 
   const handleLanguageChange = async (language) => {
     console.log('Language changed to:', language);
     await AsyncStorage.setItem('lan', language);
     i18n.changeLanguage(language);
+    setSelectedLanguage(language);
     setShowModal(false);
   };
-
 
   return (
     <View style={{ flex: 1 }}>
@@ -71,10 +80,10 @@ const ContentList = () => {
         <Ionicons name="chevron-forward" size={22} color="black" />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.contentContainer}>
+      <TouchableOpacity style={styles.contentContainer} onPress={() => setShowModal(true)}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Fontisto name="world-o" size={24} color="black" />
-          <Text style={styles.text} onPress={() => setShowModal(true)}>{t("Change Language")}</Text>
+          <Text style={styles.text}>{t("Change Language")}</Text>
         </View>
         <Ionicons name="chevron-forward" size={22} color="black" />
       </TouchableOpacity>
@@ -83,7 +92,9 @@ const ContentList = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Choose Language</Text>
-            <SwitchSelector options={options} hasPadding initial={0} onPress={handleLanguageChange} />
+            <SwitchSelector options={options} hasPadding
+              initial={options.findIndex((option) => option.value === selectedLanguage)}
+              onPress={handleLanguageChange} />
           </View>
         </View>
       </Modal>
