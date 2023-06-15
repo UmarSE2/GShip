@@ -7,6 +7,7 @@ import Font from '../Helper/Font';
 const { width } = Dimensions.get('window')
 
 const icon = require("../../Images/heartlogo.png")
+const dp = require("../../Images/dp-avatar.png")
 
 const DataList = () => {
     const navigation = useNavigation();
@@ -27,7 +28,8 @@ const DataList = () => {
 
     const renderItem = ({ item }) => (
         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Cart', { profile: item })}>
-            <Image source={item.Profile} style={styles.image} />
+            {item.Profile ? <Image source={{ uri: item.Profile }} style={styles.image} />
+                : <Image source={dp} style={styles.image} />}
             <View style={styles.subContainer}>
                 <View>
                     <Text style={styles.name}>{item.Peoplename}</Text>

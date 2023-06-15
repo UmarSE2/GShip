@@ -34,7 +34,7 @@ export default function App() {
     <NavigationContainer>
       <AuthStack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="TabFun">
+        initialRouteName="SplashScreen">
         <AuthStack.Screen name="SplashScreen" component={SplashScreen} />
         <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="Signin" component={Signin} />

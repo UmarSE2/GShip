@@ -1,97 +1,69 @@
-import React, { useState } from 'react'
-import { Text, View, StatusBar, TouchableOpacity, Image, Switch, TextInput } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
+import React from 'react'
+import { Text, View, StatusBar, TouchableOpacity, Image, SafeAreaView } from 'react-native'
 
-import Foundation from "react-native-vector-icons/Foundation"
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import Feather from "react-native-vector-icons/Feather"
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import styles from './CartStyles'
 
+const dp = require("../../Images/dp-avatar.png")
+
 const Cart = ({ route }) => {
     const { profile } = route.params;
-    const [driverSwitch, setDriverSwitch] = useState(true);
-    const [cashSwitch, setCashSwitch] = useState(false);
-    const [message, setMessage] = useState("")
-
-    const toggleDriver = () => setDriverSwitch(previousState => !previousState);
-    const toggleCash = () => setCashSwitch(previousState => !previousState);
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <StatusBar translucent backgroundColor="transparent" barStyle='dark-content' />
             <View style={styles.header} />
-
-            <LinearGradient style={styles.mainContainer}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 0, y: 0 }}
-                colors={['#b3d6ff', 'white']}>
-
-                <Text style={styles.order}>Your Order</Text>
-                <View style={styles.dpCOntainer}>
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Image source={require("../../Images/dp.png")} style={styles.image} />
-                        <View style={{ marginLeft: "10%" }}>
-                            <Text style={styles.name}>{profile.Peoplename}</Text>
-                            <Text style={styles.courier}>Your Courier</Text>
-                            <Text style={styles.courier}>$ 000 000</Text>
-                        </View>
-                    </View>
-                    <View style={{ alignItems: "center" }}>
-                        <Foundation name="star" size={25} color="#ffd200" />
-                        <View style={[styles.phoneContainer]}>
-                            <Feather name="phone" size={25} color="white" />
-                        </View>
-                    </View>
+            <View style={{ alignItems: "center" }}>
+                {profile.Profile ? <Image source={{ uri: profile.Profile }} style={styles.image} />
+                    : <Image source={dp} style={styles.image} />}
+                <View style={{ alignItems: "center" }}>
+                    <Text style={styles.name}>{profile.Peoplename}</Text>
+                    <Text style={styles.phone}>{profile.Phonenumber}</Text>
                 </View>
-
-                <View style={styles.subContainer}>
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <View style={styles.iconContainer}>
-                            <Entypo name="text-document" size={22} color="white" />
-                        </View>
-                        <Text style={styles.headtxt}>Add note for courier</Text>
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: "7%" }}>
+                <View style={{ alignItems: "center" }}>
+                    <View style={styles.iconContainer}>
+                        <MaterialCommunityIcons name="message-processing-outline" size={25} color="#4cb078" />
                     </View>
-                    <TextInput style={styles.input}
-                        value={message}
-                        onChangeText={setMessage}
-                        placeholder='Write Note'
-                        multiline={true} />
-                    <Ionicons name="checkmark-circle" size={45} color="#00cc44" style={{ alignSelf: "flex-end" }} />
+                    <Text style={styles.iconText}>Message</Text>
                 </View>
-
-                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "5%" }}>
-                    <View>
-                        <Text style={styles.cash}>Only Favourite Drivers</Text>
-                        <Text style={styles.cash}>Cashless payments</Text>
-                        <Text style={styles.cash}>Cash Pyaments</Text>
-                        <Text style={styles.cash}>Total</Text>
-                        <Text style={{ fontSize: 13, marginLeft: "5%", marginTop: "-8%" }}>+ promo code</Text>
+                <View style={{ alignItems: "center" }}>
+                    <View style={styles.iconContainer}>
+                        <Feather name="phone-call" size={25} color="#4cb078" />
                     </View>
-                    <View style={{ alignItems: "flex-end" }}>
-                        <Switch trackColor={{ false: "#acd2ed", true: "#00cc44" }}
-                            thumbColor="white"
-                            onValueChange={toggleDriver}
-                            value={driverSwitch}
-                            style={{ marginVertical: "7%" }} />
-                        <Switch trackColor={{ false: "#acd2ed", true: "#00cc44" }}
-                            thumbColor="white"
-                            onValueChange={toggleCash}
-                            value={cashSwitch}
-                            style={{ marginVertical: "7%" }} />
-                        <Ionicons name="chevron-forward" size={22} color="black" style={{ marginVertical: "20%" }} />
-                        <View style={styles.amount}>
-                            <Text style={{ color: "white", fontSize: 16, }}>$37</Text>
-                        </View>
-                    </View>
+                    <Text style={styles.iconText}>Call</Text>
                 </View>
-
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.btntxt}>Place Order</Text>
-                </TouchableOpacity>
-            </LinearGradient>
-        </View>
+                <View style={{ alignItems: "center" }}>
+                    <View style={styles.iconContainer}>
+                        <AntDesign name="mail" size={25} color="#4cb078" />
+                    </View>
+                    <Text style={styles.iconText}>Mail</Text>
+                </View>
+            </View>
+            <View style={{ flex: 1, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 30, marginTop: "5%" }}>
+                <View style={{ paddingHorizontal: 15, marginTop: "5%" }}>
+                    <Text style={styles.bottomText}>Mobile</Text>
+                    <Text style={styles.phone2}>{profile.Phonenumber}</Text>
+                    <View style={styles.line} />
+                    <Text style={styles.bottomText}>Occupation</Text>
+                    <Text style={styles.phone2}>{profile.Occuption}</Text>
+                    <View style={styles.line} />
+                    <Text style={styles.description}>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        It has survived not only five centuries,
+                    </Text>
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.btntxt}>Confirm</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
