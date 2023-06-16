@@ -32,7 +32,6 @@ const slides = [
 const AboutUs = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const [showRealApp, setShowRealApp] = useState(false);
 
   const onClose = () => {
     navigation.navigate('Profile');

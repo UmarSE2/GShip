@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StatusBar, TouchableOpacity, Image, SafeAreaView } from 'react-native'
+import { Text, View, StatusBar, TouchableOpacity, Image, SafeAreaView, Pressable, Linking } from 'react-native'
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import Feather from "react-native-vector-icons/Feather"
@@ -25,18 +25,22 @@ const Cart = ({ route }) => {
                 </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: "7%" }}>
-                <View style={{ alignItems: "center" }}>
-                    <View style={styles.iconContainer}>
-                        <MaterialCommunityIcons name="message-processing-outline" size={25} color="#4cb078" />
+                <Pressable onPress={() => Linking.openURL(`sms:${profile.Phonenumber}`)}>
+                    <View style={{ alignItems: "center" }}>
+                        <View style={styles.iconContainer}>
+                            <MaterialCommunityIcons name="message-processing-outline" size={25} color="#4cb078" />
+                        </View>
+                        <Text style={styles.iconText}>Message</Text>
                     </View>
-                    <Text style={styles.iconText}>Message</Text>
-                </View>
-                <View style={{ alignItems: "center" }}>
-                    <View style={styles.iconContainer}>
-                        <Feather name="phone-call" size={25} color="#4cb078" />
+                </Pressable>
+                <Pressable onPress={() => Linking.openURL(`tel:${profile.Phonenumber}`)}>
+                    <View style={{ alignItems: "center" }}>
+                        <View style={styles.iconContainer}>
+                            <Feather name="phone-call" size={25} color="#4cb078" />
+                        </View>
+                        <Text style={styles.iconText}>Call</Text>
                     </View>
-                    <Text style={styles.iconText}>Call</Text>
-                </View>
+                </Pressable>
                 <View style={{ alignItems: "center" }}>
                     <View style={styles.iconContainer}>
                         <AntDesign name="mail" size={25} color="#4cb078" />
@@ -63,7 +67,7 @@ const Cart = ({ route }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
